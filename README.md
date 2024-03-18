@@ -1,5 +1,5 @@
 # WE-Module3 - GenAI
-Documentation of all work and assignments completed during Module 3 of the Gen AI classes.
+Documentation of all work and assignments completed during Gen AI classes.
 ## Assignment 01
 Pick any non-trivial problem statement from your computational thinking course and ask genAI to solve it. Iterate upon its solution to apply our principles of clean code.
 
