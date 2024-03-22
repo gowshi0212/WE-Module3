@@ -5,9 +5,6 @@
 
 Here's the Python code to find the minimum number of idlis needed:
 
-![https://www.gstatic.com/lamda/images/gemini_sparkle_v002_d4735304ff6292a690345.svg](https://www.gstatic.com/lamda/images/gemini_sparkle_v002_d4735304ff6292a690345.svg)
-
-![https://fonts.gstatic.com/s/e/notoemoji/latest/1f680/emoji.svg](https://fonts.gstatic.com/s/e/notoemoji/latest/1f680/emoji.svg)
 
 **Python**
 
@@ -54,9 +51,7 @@ This code works by:
 
 ## returning total_odd_idlies is not going to work in all cases, for example, [2, 3, 4, 6, 4, 3], Keep in mind the rule that the idlies have to be distributed in pairs
 
-![https://www.gstatic.com/lamda/images/gemini_sparkle_v002_d4735304ff6292a690345.svg](https://www.gstatic.com/lamda/images/gemini_sparkle_v002_d4735304ff6292a690345.svg)
 
-![https://fonts.gstatic.com/s/e/notoemoji/latest/1f680/emoji.svg](https://fonts.gstatic.com/s/e/notoemoji/latest/1f680/emoji.svg)
 
 You're absolutely right. Distributing only the total odd idlis won't work in all cases, as identified in the example. Here's the improved code that addresses this:
 
@@ -111,9 +106,7 @@ This approach ensures that we distribute the minimum number of idlis considering
 
 ## This defeats the purpose of finding MINIMUM idlies
 
-![https://www.gstatic.com/lamda/images/gemini_sparkle_v002_d4735304ff6292a690345.svg](https://www.gstatic.com/lamda/images/gemini_sparkle_v002_d4735304ff6292a690345.svg)
 
-![https://fonts.gstatic.com/s/e/notoemoji/latest/1f680/emoji.svg](https://fonts.gstatic.com/s/e/notoemoji/latest/1f680/emoji.svg)
 
 You're absolutely correct. The previous solution overcompensated for avoiding new odd numbers, leading to unnecessary distribution. Here's a revised approach that finds the true minimum idlis needed:
 
@@ -186,9 +179,6 @@ This approach ensures that we distribute the minimum number of idlis pairs neede
 
 You're right, the previous solution didn't account for non-consecutive odd numbers. Here's an improved version that addresses this scenario:
 
-![https://www.gstatic.com/lamda/images/gemini_sparkle_v002_d4735304ff6292a690345.svg](https://www.gstatic.com/lamda/images/gemini_sparkle_v002_d4735304ff6292a690345.svg)
-
-![https://fonts.gstatic.com/s/e/notoemoji/latest/1f680/emoji.svg](https://fonts.gstatic.com/s/e/notoemoji/latest/1f680/emoji.svg)
 
 **Python**
 
@@ -253,9 +243,7 @@ This approach finds the minimum number of idlis needed to ensure everyone has an
 
 ## Try a recursive approach, try to decompose functions, since you dont need the exact number but just the fact that it is odd or even, you can throw away the numbers if needed
 
-![https://www.gstatic.com/lamda/images/gemini_sparkle_v002_d4735304ff6292a690345.svg](https://www.gstatic.com/lamda/images/gemini_sparkle_v002_d4735304ff6292a690345.svg)
 
-![https://fonts.gstatic.com/s/e/notoemoji/latest/1f680/emoji.svg](https://fonts.gstatic.com/s/e/notoemoji/latest/1f680/emoji.svg)
 
 Here's the Python code using a recursive approach to determine if it's possible to distribute idlis such that everyone has an even number of idlis:
 
@@ -311,9 +299,7 @@ This approach avoids keeping track of the exact number of idlis needed and simpl
 
 ## why is it not possible if the first person has an odd number?
 
-![https://www.gstatic.com/lamda/images/gemini_sparkle_v002_d4735304ff6292a690345.svg](https://www.gstatic.com/lamda/images/gemini_sparkle_v002_d4735304ff6292a690345.svg)
 
-![https://fonts.gstatic.com/s/e/notoemoji/latest/1f680/emoji.svg](https://fonts.gstatic.com/s/e/notoemoji/latest/1f680/emoji.svg)
 
 You're right, the previous recursive approach made an incorrect assumption. Here's the explanation:
 
@@ -362,13 +348,11 @@ This revised code simply removes the check for the first person's parity and foc
 
 However, it's important to note that this approach only determines if a solution exists, not the minimum number of idlis needed for distribution. We can keep this recursive approach for determining feasibility and use another method (like the iterative approach from previous solutions) to find the minimum idlis if needed.
 
-[https://lh3.googleusercontent.com/a/default-user=s256](https://lh3.googleusercontent.com/a/default-user=s256)
+
 
 ## This would return any list of idlies as "distributable"
 
-![https://www.gstatic.com/lamda/images/gemini_sparkle_v002_d4735304ff6292a690345.svg](https://www.gstatic.com/lamda/images/gemini_sparkle_v002_d4735304ff6292a690345.svg)
 
-![https://fonts.gstatic.com/s/e/notoemoji/latest/1f680/emoji.svg](https://fonts.gstatic.com/s/e/notoemoji/latest/1f680/emoji.svg)
 
 You're absolutely right. The previous recursive solution only checks if a solution exists, but it doesn't consider the constraint of needing to distribute idlis in pairs. Here's an improved recursive approach that addresses this issue:
 
@@ -441,9 +425,7 @@ This approach ensures that the distribution considers the pairing constraint and
 
 ## is_distributable doesnt even need an recursive approach, you juts need to check if the number of odds are even or odd, after implementing is_distributable, implement a function that returns minimum number f idlies and uses recursion
 
-![https://www.gstatic.com/lamda/images/gemini_sparkle_v002_d4735304ff6292a690345.svg](https://www.gstatic.com/lamda/images/gemini_sparkle_v002_d4735304ff6292a690345.svg)
 
-![https://fonts.gstatic.com/s/e/notoemoji/latest/1f680/emoji.svg](https://fonts.gstatic.com/s/e/notoemoji/latest/1f680/emoji.svg)
 
 You're absolutely right on both counts!
 
@@ -523,13 +505,10 @@ While this approach works, it can be less efficient for larger lists due to pote
 
 Remember, the simpler `is_distributable` function and the iterative approach from previous solutions (`distribute_idlis` with modifications) are generally more efficient and recommended for finding the minimum number of idlis needed.
 
-[https://lh3.googleusercontent.com/a/default-user=s256](https://lh3.googleusercontent.com/a/default-user=s256)
+
 
 ## this is a good split up, but it might not cover the case where there is an even after an odd, when there os an even after an odd, the even becomes odd when you distribute idly in a pair. That change has to be made
 
-![https://www.gstatic.com/lamda/images/gemini_sparkle_v002_d4735304ff6292a690345.svg](https://www.gstatic.com/lamda/images/gemini_sparkle_v002_d4735304ff6292a690345.svg)
-
-![https://fonts.gstatic.com/s/e/notoemoji/latest/1f680/emoji.svg](https://fonts.gstatic.com/s/e/notoemoji/latest/1f680/emoji.svg)
 
 You're absolutely right. The previous approach for minimum idlis needed didn't consider the fact that distributing to an odd person can make a following even person odd. Here's the improved iterative approach that addresses this:
 
@@ -591,13 +570,11 @@ else:
 
 This approach ensures that we distribute the minimum number of idlis pairs needed to make everyone have an even number of idlis, considering the impact of distributing to odd people on subsequent even people.
 
-[https://lh3.googleusercontent.com/a/default-user=s256](https://lh3.googleusercontent.com/a/default-user=s256)
+
 
 ## give me a list of testcases for idlies held along with the right answers
 
-![https://www.gstatic.com/lamda/images/gemini_sparkle_v002_d4735304ff6292a690345.svg](https://www.gstatic.com/lamda/images/gemini_sparkle_v002_d4735304ff6292a690345.svg)
 
-![https://fonts.gstatic.com/s/e/notoemoji/latest/1f680/emoji.svg](https://fonts.gstatic.com/s/e/notoemoji/latest/1f680/emoji.svg)
 
 Sure, here are some test cases for the `distribute_idlis` function along with the expected right answers:
 
