@@ -13,7 +13,7 @@ class UI:
   """
   WHITE = (255, 255, 255)
   GREEN = (0, 255, 0)
-  DARKGREEN = (0, 255, 255)
+  DARKGREEN = (1, 50, 32)
   BLACK = (0, 0, 0)
   CARD_WIDTH = 25
   CARD_HEIGHT = 30
@@ -25,7 +25,7 @@ class UI:
     pygame.init()
     
     self.screen = pygame.display.set_mode((screen_width, screen_height))
-    self.screen.fill("purple")
+    self.screen.fill("pink")
     self.card_images = self.load_card_images()
     self.card_back_image = pygame.image.load("playing-cards-master/back_dark.png").convert_alpha()
     self.game = None  # Reference to DiamondsGame object (set later)
@@ -66,7 +66,7 @@ class UI:
 
   def display_hand(self, hand):
     # Clear screen and set background color
-    self.screen.fill(self.WHITE)
+    self.screen.fill(self.DARKGREEN)
 
     # Draw each card in the hand with some spacing
     for i, card in enumerate(hand):
@@ -87,8 +87,31 @@ class UI:
     pygame.display.flip()
 
   def display_chosen_card(self, player, chosen_card):
-    # Highlight chosen card in player's hand
-    pass  # Implement highlighting logic (optional)
+    """
+    Highlights the chosen card's image in the player's hand.
+
+    Args:
+        player: The Player object representing the current player.
+        chosen_card: The Card object that the player has chosen.
+    """
+    card_rect = card_image.get_rect()  # Base rectangle for card image
+    alpha_surface = pygame.Surface(card_rect.size, pygame.SRCALPHA)  # Create alpha surface
+    alpha_surface.fill((255, 255, 255, 128))  # Set partial transparency
+
+    for i, card in enumerate(player.cards):
+      # Highlight chosen card's image with alpha surface
+      if card == chosen_card:
+        card_rect.x = 50 + (i * card_rect.width)
+        card_rect.y = screen_height // 2
+        screen.blit(card_image, card_rect)
+        screen.blit(alpha_surface, card_rect)  # Overlay alpha surface for highlight
+
+      card_rect.x = 50 + (i * card_rect.width)
+      card_rect.y = screen_height // 2
+      screen.blit(card_image, card_rect)
+      card_text = font.render(card.get_display_name(), True, BLACK)
+      text_rect = card_text.get_rect(center=card_rect.center)
+      screen.blit(card_text, text_rect)
 
   def display_game_state(self, auction_card, players):
     # Clear screen and set background color
