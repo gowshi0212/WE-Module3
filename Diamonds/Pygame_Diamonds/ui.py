@@ -15,41 +15,42 @@ class UI:
   GREEN = (0, 255, 0)
   DARKGREEN = (1, 50, 32)
   BLACK = (0, 0, 0)
-  CARD_WIDTH = 25
-  CARD_HEIGHT = 30
+  CARD_WIDTH = 60.5
+  CARD_HEIGHT = 85
   BUTTON_WIDTH = 150
   BUTTON_HEIGHT = 50
   FONT = pygame.font.SysFont(None, 32)
 
   def __init__(self, screen_width, screen_height):
     pygame.init()
-    
-    self.screen = pygame.display.set_mode((screen_width, screen_height))
+    self.flags = pygame.RESIZABLE
+    self.screen = pygame.display.set_mode((screen_width, screen_height), self.flags)
     self.screen.fill("pink")
     self.card_images = self.load_card_images()
     self.card_back_image = pygame.image.load("playing-cards-master/back_dark.png").convert_alpha()
     self.game = None  # Reference to DiamondsGame object (set later)
     self.current_scene = "setup"  # Initial scene
-
+    self.show_computer_cards = False
   def load_card_images(self):
     images = {}
+    images_smaller = {}
     for suit in ["Clubs", "Diamonds", "Hearts", "Spades"]:
       for value in range(2, 15):
         print(suit, value)
         card_value = {2: "2", 3: "3", 4: "4", 5: "5", 6: "6", 7: "7", 8: "8", 9: "9", 10: "10", 11: "J", 12: "Q", 13: "K", 14: "A"}
         filename = f"playing-cards-master/{suit}_{card_value[value]}.png"
-
         images[(suit, value)] = pygame.image.load(filename).convert_alpha()
-    return images
+        images_smaller[(suit, value)] = pygame.transform.scale(images[(suit, value)], (60.5, 85))
+    return images_smaller
 
-  def draw_card(self, card, x, y):
+  def display_card(self, card, x, y):
     if card is None:
       self.screen.blit(self.card_back_image, (x, y))
     else:
       print(self.card_images)
       self.screen.blit(self.card_images[(card.suit, card.value)], (x, y))
 
-  def draw_button(self, text, x, y, width, height, color, hover_color, click_func):
+  def display_button(self, text, x, y, width, height, color, hover_color, click_func):
     # Draw button background and text
     button_rect = pygame.Rect(x, y, width, height)
     mouse_x, mouse_y = pygame.mouse.get_pos() 
@@ -64,24 +65,28 @@ class UI:
     if pygame.mouse.get_pressed()[0] and button_rect.collidepoint(pygame.mouse.get_pos()):
       click_func()
 
-  def display_hand(self, hand):
+  def display_hand(self, hand, player_position = 20):
     # Clear screen and set background color
     self.screen.fill(self.DARKGREEN)
 
-    # Draw each card in the hand with some spacing
+    # Display each card in the hand with some spacing
     for i, card in enumerate(hand):
-      self.draw_card(card, i * (self.CARD_WIDTH + 5), 20)
-
+      self.display_card(card, i * (self.CARD_WIDTH + 1), player_position)
+    for i, card in enumerate(hand):
+      if not self.game.is_current_player(i) and not self.show_computer_cards:
+        self.screen.blit(self.card_back_image, (x, y))
+      else:
+        self.screen.blit(self.card_images[(card.suit, card.value)], (x, y))
     # Update the display
     pygame.display.flip()
 
   def display_auction_card(self, card):
     # Draw auction card at a specific location
-    self.draw_card(card, self.screen.get_width() // 2 - self.CARD_WIDTH // 2, self.screen.get_height() // 2 - self.CARD_HEIGHT // 2)
+    self.display_card(card, self.screen.get_width() // 2 - self.CARD_WIDTH // 2, self.screen.get_height() // 2 - self.CARD_HEIGHT // 2)
 
     # Display text for Auction Card
     auction_text = self.FONT.render("Auction Card", True, self.BLACK)
-    self.screen.blit(auction_text, (self.screen.get_width() // 2 - auction_text.get_width() // 2, 10))
+    self.screen.blit(auction_text, (self.screen.get_width() // 2 - auction_text.get_width() // 2, self.screen.get_height()// 2))
 
     # Update the display
     pygame.display.flip()
@@ -130,7 +135,7 @@ class UI:
 
   def handle_setup_scene(self):
     # Display "Start Game" button
-    self.draw_button("Start Game", self.screen.get_width() // 2 - self.BUTTON_WIDTH // 2, self.screen.get_height() // 2, self.BUTTON_WIDTH, self.BUTTON_HEIGHT, self.GREEN, self.DARKGREEN, self.start_game)
+    self.display_button("Start Game", self.screen.get_width() // 2 - self.BUTTON_WIDTH // 2, self.screen.get_height() // 2, self.BUTTON_WIDTH, self.BUTTON_HEIGHT, self.GREEN, self.DARKGREEN, self.start_game)
 
   def handle_in_game_scene(self, current_player):
     self.screen.fill("purple")
@@ -166,16 +171,16 @@ class UI:
 
       # Handle events based on current scene
       if self.current_scene == "setup":
-        self.screen.fill("purple")
+        self.screen.fill("pink")
         self.handle_setup_scene()
       elif self.current_scene == "in_game":
-        self.screen.fill("purple")
+        self.screen.fill("self.DARKGREEN")
         current_player = self.game.players[0]  # Assuming user is player 1
         self.handle_in_game_scene(current_player)
         # Implement logic to get user card choice and pass to game
         # Update scene based on game state (e.g., after bidding round)
       elif self.current_scene == "game_over":
-        self.screen.fill("purple")
+        self.screen.fill("pink")
         winner = self.game.get_winner()
         self.handle_game_over_scene(winner)
 

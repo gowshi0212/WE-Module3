@@ -6,8 +6,8 @@ from ui import UI
 pygame.init()
 
 # Set screen dimensions
-screen_width = 800
-screen_height = 600
+screen_width = 1000
+screen_height = 1000
 
 # Create DiamondsGame object
 game = DiamondsGame()
